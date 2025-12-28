@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckdl0t4dbwmln"]
+
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://Assets/Sprites/icon.svg" id="1_s0eop"]
+[ext_resource type="Script" uid="uid://boswemfh8pxp1" path="res://Scripts/Game Objects/Player.cs" id="2_ft8w5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ft8w5"]
+atlas = ExtResource("1_s0eop")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h54ih"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ft8w5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s0eop"]
+
+[node name="Player" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_h54ih")
+script = ExtResource("2_ft8w5")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_s0eop")

@@ -15,5 +15,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\Game Objects\" />
+    <Folder Include="Scripts\Test\" />
   </ItemGroup>
 </Project>
