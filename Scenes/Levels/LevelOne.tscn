@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://cqix1mfrj2odo"]
+
+[ext_resource type="Texture2D" uid="uid://b2d3k2f7rj211" path="res://Assets/Sprites/background.png" id="1_8wook"]
+[ext_resource type="Texture2D" uid="uid://bdtchovlc5rnx" path="res://Assets/Sprites/bottom_layer_parallax.png" id="2_m7drd"]
+[ext_resource type="Texture2D" uid="uid://dayd0ke8kdyba" path="res://Assets/Sprites/top_layer_parallax.png" id="2_tleh3"]
+[ext_resource type="Texture2D" uid="uid://dwhbmbu6qnwli" path="res://Assets/Sprites/middle_layer_parallax.png" id="3_2yxij"]
+[ext_resource type="PackedScene" uid="uid://ckdl0t4dbwmln" path="res://Scenes/Player/Player.tscn" id="3_tleh3"]
+
+[node name="Level One" type="Node2D"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_8wook")
+centered = false
+
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2"]
+position = Vector2(1, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("2_m7drd")
+centered = false
+
+[node name="Parallax2D3" type="Parallax2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D3"]
+scale = Vector2(2, 2)
+texture = ExtResource("3_2yxij")
+centered = false
+
+[node name="Parallax2D4" type="Parallax2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D4"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_tleh3")
+centered = false
+
+[node name="Player" parent="." instance=ExtResource("3_tleh3")]
+position = Vector2(114, 578)
+scale = Vector2(2, 2)
