@@ -63,6 +63,4 @@ animations = [{
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_5kmi8")
-animation = &"Death"
-frame = 5
-frame_progress = 1.0
+animation = &"Idle"

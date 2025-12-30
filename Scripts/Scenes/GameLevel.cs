@@ -5,6 +5,9 @@ public partial class GameLevel : Node2D, ITick {
     [Export]
     private SceneId _sceneId;
 
+    [Export]
+    private Area2D _triggerCombatArea;
+
     private GameClock _gameClock;
     private SceneManager _sceneManager;
     private int _ticksPerStage = 20 * Engine.PhysicsTicksPerSecond;
@@ -16,11 +19,21 @@ public partial class GameLevel : Node2D, ITick {
         _sceneManager.SetCurrentSceneId(_sceneId);
 
         _gameClock.AddActiveScene(this, GetInstanceId());
+
+        _triggerCombatArea.AreaEntered += _TriggerCombat;
     }
+
+
 
     public override void _ExitTree() {
         _gameClock.RemoveActiveScene(GetInstanceId());
     }
 
     public void PhysicsTick() { }
+    
+    private void _TriggerCombat(Area2D area) {
+        if (area.GetParent() is Player) {
+            GD.Print("Player entered combat");
+        }
+    }
 }

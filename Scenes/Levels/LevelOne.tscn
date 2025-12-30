@@ -1,13 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqix1mfrj2odo"]
+[gd_scene load_steps=10 format=3 uid="uid://cqix1mfrj2odo"]
 
+[ext_resource type="Script" uid="uid://2ndkouxlodec" path="res://Scripts/Scenes/GameLevel.cs" id="1_1bf4a"]
 [ext_resource type="Texture2D" uid="uid://b2d3k2f7rj211" path="res://Assets/Sprites/background.png" id="1_8wook"]
 [ext_resource type="Texture2D" uid="uid://bdtchovlc5rnx" path="res://Assets/Sprites/bottom_layer_parallax.png" id="2_m7drd"]
 [ext_resource type="Texture2D" uid="uid://dayd0ke8kdyba" path="res://Assets/Sprites/top_layer_parallax.png" id="2_tleh3"]
 [ext_resource type="Texture2D" uid="uid://dwhbmbu6qnwli" path="res://Assets/Sprites/middle_layer_parallax.png" id="3_2yxij"]
 [ext_resource type="PackedScene" uid="uid://ckdl0t4dbwmln" path="res://Scenes/Player/Player.tscn" id="3_tleh3"]
 [ext_resource type="Script" uid="uid://bgyyfaob2y81f" path="res://Scripts/Game Objects/CameraFollowPlayer.cs" id="6_2yxij"]
+[ext_resource type="PackedScene" uid="uid://vtyeyjuk5ici" path="res://Scenes/Monster/Monster.tscn" id="7_xrkai"]
 
-[node name="Level One" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrkai"]
+size = Vector2(96.75, 597)
+
+[node name="Level One" type="Node2D" node_paths=PackedStringArray("_triggerCombatArea")]
+script = ExtResource("1_1bf4a")
+_triggerCombatArea = NodePath("Area2D")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.5, 0.5)
@@ -57,3 +64,12 @@ scale = Vector2(2, 2)
 offset = Vector2(0, 360)
 script = ExtResource("6_2yxij")
 _player = NodePath("../Player")
+
+[node name="AnimatedSprite2D" parent="." instance=ExtResource("7_xrkai")]
+position = Vector2(2651, 567)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2593, 535.5)
+shape = SubResource("RectangleShape2D_xrkai")
