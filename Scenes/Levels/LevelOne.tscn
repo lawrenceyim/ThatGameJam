@@ -10,6 +10,9 @@
 [node name="Level One" type="Node2D"]
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(1280, 0)
+repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
 scale = Vector2(2, 2)
@@ -17,6 +20,9 @@ texture = ExtResource("1_8wook")
 centered = false
 
 [node name="Parallax2D2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.75, 0.75)
+repeat_size = Vector2(1280, 0)
+repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D2"]
 position = Vector2(1, 0)
@@ -25,6 +31,8 @@ texture = ExtResource("2_m7drd")
 centered = false
 
 [node name="Parallax2D3" type="Parallax2D" parent="."]
+repeat_size = Vector2(1280, 0)
+repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D3"]
 scale = Vector2(2, 2)
@@ -32,6 +40,9 @@ texture = ExtResource("3_2yxij")
 centered = false
 
 [node name="Parallax2D4" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.25, 1.25)
+repeat_size = Vector2(1280, 0)
+repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D4"]
 scale = Vector2(2, 2)
