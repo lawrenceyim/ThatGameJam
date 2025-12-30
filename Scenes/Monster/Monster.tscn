@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://vtyeyjuk5ici"]
+
+[ext_resource type="Texture2D" uid="uid://bdvgh7dbwlh0j" path="res://Assets/Sprites/beast_idle.png" id="1_o74e3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5kmi8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_o74e3")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_5kmi8")
+animation = &"Idle"
