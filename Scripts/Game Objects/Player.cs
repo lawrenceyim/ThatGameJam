@@ -1,15 +1,20 @@
-using System.Collections.Generic;
 using Godot;
 using InputSystem;
 using ServiceSystem;
 
 public partial class Player : AnimatedSprite2D, IInputState, ITick {
+    public enum PlayerState {
+        Moving,
+        Combat
+    }
+
     private const string AttackOne = "Attack One";
     private const string Move = "Move";
     private const string Idle = "Idle";
 
     private GameClock _gameClock;
     private float _movementSpeed = 180 / Engine.PhysicsTicksPerSecond;
+    private PlayerState _state = PlayerState.Moving;
 
     public override void _Ready() {
         ServiceLocator serviceLocator = GetNode<ServiceLocator>(ServiceLocator.AutoloadPath);
@@ -24,6 +29,27 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
     public void ProcessInput(InputEventDto eventDto) { }
 
     public void PhysicsTick() {
+        switch (_state) {
+            case PlayerState.Moving:
+                _Moving();
+                break;
+            case PlayerState.Combat:
+                _Combat();
+                break;
+        }
+    }
+
+    public void SetState(PlayerState newState) {
+        _state = newState;
+
+        switch (_state) {
+            case PlayerState.Combat:
+                Play(Idle);
+                break;
+        }
+    }
+
+    private void _Moving() {
         int movementX = 0;
         if (Input.IsActionPressed("MoveLeft")) {
             movementX -= 1;
@@ -42,4 +68,6 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
         FlipH = movementX < 0;
         Position += new Vector2(movementX * _movementSpeed, 0);
     }
+
+    private void _Combat() { }
 }

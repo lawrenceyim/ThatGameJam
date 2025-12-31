@@ -61,6 +61,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+[node name="Monster" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_5kmi8")
 animation = &"Idle"
