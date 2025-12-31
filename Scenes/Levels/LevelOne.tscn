@@ -14,45 +14,47 @@ size = Vector2(96.75, 597)
 
 [node name="Level One" type="Node2D" node_paths=PackedStringArray("_triggerCombatArea", "_player")]
 script = ExtResource("1_1bf4a")
-_triggerCombatArea = NodePath("Area2D")
+_triggerCombatArea = NodePath("Combat Initiation Area2D")
 _player = NodePath("Player")
 
-[node name="Parallax2D" type="Parallax2D" parent="."]
+[node name="Parallax Scenes" type="Node2D" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="Parallax Scenes"]
 scroll_scale = Vector2(0.5, 0.5)
 repeat_size = Vector2(1280, 0)
 repeat_times = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Parallax Scenes/Parallax2D"]
 scale = Vector2(2, 2)
 texture = ExtResource("1_8wook")
 centered = false
 
-[node name="Parallax2D2" type="Parallax2D" parent="."]
+[node name="Parallax2D2" type="Parallax2D" parent="Parallax Scenes"]
 scroll_scale = Vector2(0.75, 0.75)
 repeat_size = Vector2(1280, 0)
 repeat_times = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2"]
+[node name="Sprite2D" type="Sprite2D" parent="Parallax Scenes/Parallax2D2"]
 position = Vector2(1, 0)
 scale = Vector2(2, 2)
 texture = ExtResource("2_m7drd")
 centered = false
 
-[node name="Parallax2D3" type="Parallax2D" parent="."]
+[node name="Parallax2D3" type="Parallax2D" parent="Parallax Scenes"]
 repeat_size = Vector2(1280, 0)
 repeat_times = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D3"]
+[node name="Sprite2D" type="Sprite2D" parent="Parallax Scenes/Parallax2D3"]
 scale = Vector2(2, 2)
 texture = ExtResource("3_2yxij")
 centered = false
 
-[node name="Parallax2D4" type="Parallax2D" parent="."]
+[node name="Parallax2D4" type="Parallax2D" parent="Parallax Scenes"]
 scroll_scale = Vector2(1.25, 1.25)
 repeat_size = Vector2(1280, 0)
 repeat_times = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D4"]
+[node name="Sprite2D" type="Sprite2D" parent="Parallax Scenes/Parallax2D4"]
 scale = Vector2(2, 2)
 texture = ExtResource("2_tleh3")
 centered = false
@@ -69,9 +71,9 @@ _player = NodePath("../Player")
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("7_xrkai")]
 position = Vector2(1228, 583)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Combat Initiation Area2D" type="Area2D" parent="."]
 position = Vector2(-1423, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Combat Initiation Area2D"]
 position = Vector2(2593, 535.5)
 shape = SubResource("RectangleShape2D_xrkai")
