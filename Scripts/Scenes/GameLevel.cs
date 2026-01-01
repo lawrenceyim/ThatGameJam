@@ -11,6 +11,18 @@ public partial class GameLevel : Node2D, ITick {
     [Export]
     private Player _player;
 
+    [Export]
+    private Button _buttonAttackOne;
+
+    [Export]
+    private Button _buttonAttackTwo;
+
+    [Export]
+    private Button _buttonAttackThree;
+
+    [Export]
+    private Control _combatUi;
+
     private GameClock _gameClock;
     private SceneManager _sceneManager;
     private int _ticksPerStage = 20 * Engine.PhysicsTicksPerSecond;
@@ -24,6 +36,11 @@ public partial class GameLevel : Node2D, ITick {
         _gameClock.AddActiveScene(this, GetInstanceId());
 
         _triggerCombatArea.AreaEntered += _TriggerCombat;
+        _buttonAttackOne.Pressed += () => _Attack(Player.AttackType.One);
+        _buttonAttackTwo.Pressed += () => _Attack(Player.AttackType.Two);
+        _buttonAttackThree.Pressed += () => _Attack(Player.AttackType.Three);
+
+        _combatUi.Visible = false;
     }
 
 
@@ -37,6 +54,11 @@ public partial class GameLevel : Node2D, ITick {
         if (area.GetParent() is Player) {
             GD.Print("Player entered combat");
             _player.SetState(Player.PlayerState.Combat);
+            _combatUi.Visible = true;
         }
+    }
+
+    private void _Attack(Player.AttackType attackType) {
+        _player.Attack(attackType);
     }
 }

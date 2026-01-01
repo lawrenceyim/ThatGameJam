@@ -8,6 +8,13 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
         Combat
     }
 
+    public enum AttackType {
+        One,
+        Two,
+        Three,
+        Four
+    }
+
     private const string AttackOne = "Attack One";
     private const string Move = "Move";
     private const string Idle = "Idle";
@@ -35,6 +42,20 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
                 break;
             case PlayerState.Combat:
                 _Combat();
+                break;
+        }
+    }
+
+    public void Attack(AttackType type) {
+        GD.Print($"Attack type {type}");
+        switch (type) {
+            case AttackType.One:
+                break;
+            case AttackType.Two:
+                break;
+            case AttackType.Three:
+                break;
+            case AttackType.Four:
                 break;
         }
     }

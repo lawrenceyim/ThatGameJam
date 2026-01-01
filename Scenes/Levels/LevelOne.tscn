@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqix1mfrj2odo"]
+[gd_scene load_steps=11 format=3 uid="uid://cqix1mfrj2odo"]
 
 [ext_resource type="Script" uid="uid://2ndkouxlodec" path="res://Scripts/Scenes/GameLevel.cs" id="1_1bf4a"]
 [ext_resource type="Texture2D" uid="uid://b2d3k2f7rj211" path="res://Assets/Sprites/background.png" id="1_8wook"]
@@ -8,14 +8,19 @@
 [ext_resource type="PackedScene" uid="uid://ckdl0t4dbwmln" path="res://Scenes/Player/Player.tscn" id="3_tleh3"]
 [ext_resource type="Script" uid="uid://bgyyfaob2y81f" path="res://Scripts/Game Objects/CameraFollowPlayer.cs" id="6_2yxij"]
 [ext_resource type="PackedScene" uid="uid://vtyeyjuk5ici" path="res://Scenes/Monster/Monster.tscn" id="7_xrkai"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://Assets/Sprites/icon.svg" id="9_202xy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrkai"]
 size = Vector2(96.75, 597)
 
-[node name="Level One" type="Node2D" node_paths=PackedStringArray("_triggerCombatArea", "_player")]
+[node name="Level One" type="Node2D" node_paths=PackedStringArray("_triggerCombatArea", "_player", "_buttonAttackOne", "_buttonAttackTwo", "_buttonAttackThree", "_combatUi")]
 script = ExtResource("1_1bf4a")
 _triggerCombatArea = NodePath("Combat Initiation Area2D")
 _player = NodePath("Player")
+_buttonAttackOne = NodePath("Camera2D/Control Combat/Button Attack One")
+_buttonAttackTwo = NodePath("Camera2D/Control Combat/Button Attack Two")
+_buttonAttackThree = NodePath("Camera2D/Control Combat/Button Attack Three")
+_combatUi = NodePath("Camera2D/Control Combat")
 
 [node name="Parallax Scenes" type="Node2D" parent="."]
 
@@ -67,6 +72,40 @@ scale = Vector2(2, 2)
 offset = Vector2(0, 360)
 script = ExtResource("6_2yxij")
 _player = NodePath("../Player")
+
+[node name="Control Combat" type="Control" parent="Camera2D"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -640.0
+offset_right = 640.0
+offset_bottom = 720.0
+grow_horizontal = 2
+
+[node name="Button Attack One" type="Button" parent="Camera2D/Control Combat"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 396.0
+offset_right = 216.0
+offset_bottom = 532.0
+icon = ExtResource("9_202xy")
+
+[node name="Button Attack Two" type="Button" parent="Camera2D/Control Combat"]
+layout_mode = 0
+offset_left = 231.0
+offset_top = 523.0
+offset_right = 367.0
+offset_bottom = 659.0
+icon = ExtResource("9_202xy")
+
+[node name="Button Attack Three" type="Button" parent="Camera2D/Control Combat"]
+layout_mode = 0
+offset_left = 415.0
+offset_top = 556.0
+offset_right = 551.0
+offset_bottom = 692.0
+icon = ExtResource("9_202xy")
 
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("7_xrkai")]
 position = Vector2(1228, 583)
