@@ -16,6 +16,8 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
     }
 
     private const string AttackOne = "Attack One";
+    private const string AttackTwo = "Attack Two";
+    private const string AttackThree = "Attack Three";
     private const string Move = "Move";
     private const string Idle = "Idle";
 
@@ -50,10 +52,13 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
         GD.Print($"Attack type {type}");
         switch (type) {
             case AttackType.One:
+                Play(AttackOne);
                 break;
             case AttackType.Two:
+                Play(AttackTwo);
                 break;
             case AttackType.Three:
+                Play(AttackThree);
                 break;
             case AttackType.Four:
                 break;
