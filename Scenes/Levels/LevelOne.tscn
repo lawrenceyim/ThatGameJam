@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cqix1mfrj2odo"]
+[gd_scene load_steps=12 format=3 uid="uid://cqix1mfrj2odo"]
 
 [ext_resource type="Script" uid="uid://2ndkouxlodec" path="res://Scripts/Scenes/GameLevel.cs" id="1_1bf4a"]
 [ext_resource type="Texture2D" uid="uid://b2d3k2f7rj211" path="res://Assets/Sprites/background.png" id="1_8wook"]
@@ -8,18 +8,23 @@
 [ext_resource type="PackedScene" uid="uid://ckdl0t4dbwmln" path="res://Scenes/Player/Player.tscn" id="3_tleh3"]
 [ext_resource type="Script" uid="uid://bgyyfaob2y81f" path="res://Scripts/Game Objects/CameraFollowPlayer.cs" id="6_2yxij"]
 [ext_resource type="PackedScene" uid="uid://vtyeyjuk5ici" path="res://Scenes/Monster/Monster.tscn" id="7_xrkai"]
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://Assets/Sprites/icon.svg" id="9_202xy"]
+[ext_resource type="Texture2D" uid="uid://ld1qj5ss7c0x" path="res://Assets/Sprites/Button.png" id="8_v1doc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_202xy"]
+font_size = 50
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrkai"]
 size = Vector2(96.75, 597)
 
-[node name="Level One" type="Node2D" node_paths=PackedStringArray("_triggerCombatArea", "_player", "_buttonAttackOne", "_buttonAttackTwo", "_buttonAttackThree", "_combatUi")]
+[node name="Level One" type="Node2D" node_paths=PackedStringArray("_triggerCombatArea", "_player", "_buttonAttackOne", "_buttonAttackTwo", "_buttonAttackThree", "_buttonAttackFour", "_combatUi")]
 script = ExtResource("1_1bf4a")
 _triggerCombatArea = NodePath("Combat Initiation Area2D")
 _player = NodePath("Player")
 _buttonAttackOne = NodePath("Camera2D/Control Combat/Button Attack One")
 _buttonAttackTwo = NodePath("Camera2D/Control Combat/Button Attack Two")
 _buttonAttackThree = NodePath("Camera2D/Control Combat/Button Attack Three")
+_buttonAttackFour = NodePath("Camera2D/Control Combat/Button Attack Four")
 _combatUi = NodePath("Camera2D/Control Combat")
 
 [node name="Parallax Scenes" type="Node2D" parent="."]
@@ -86,26 +91,74 @@ grow_horizontal = 2
 [node name="Button Attack One" type="Button" parent="Camera2D/Control Combat"]
 layout_mode = 0
 offset_left = 80.0
-offset_top = 396.0
-offset_right = 216.0
-offset_bottom = 532.0
-icon = ExtResource("9_202xy")
+offset_top = 400.0
+offset_right = 188.0
+offset_bottom = 508.0
+icon = ExtResource("8_v1doc")
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="Camera2D/Control Combat/Button Attack One"]
+layout_mode = 0
+offset_right = 108.0
+offset_bottom = 108.0
+text = "1"
+label_settings = SubResource("LabelSettings_202xy")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button Attack Two" type="Button" parent="Camera2D/Control Combat"]
 layout_mode = 0
-offset_left = 231.0
-offset_top = 523.0
-offset_right = 367.0
-offset_bottom = 659.0
-icon = ExtResource("9_202xy")
+offset_left = 200.0
+offset_top = 450.0
+offset_right = 308.0
+offset_bottom = 558.0
+icon = ExtResource("8_v1doc")
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="Camera2D/Control Combat/Button Attack Two"]
+layout_mode = 0
+offset_right = 108.0
+offset_bottom = 108.0
+text = "2"
+label_settings = SubResource("LabelSettings_202xy")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button Attack Three" type="Button" parent="Camera2D/Control Combat"]
 layout_mode = 0
-offset_left = 415.0
-offset_top = 556.0
-offset_right = 551.0
-offset_bottom = 692.0
-icon = ExtResource("9_202xy")
+offset_left = 320.0
+offset_top = 500.0
+offset_right = 428.0
+offset_bottom = 608.0
+icon = ExtResource("8_v1doc")
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="Camera2D/Control Combat/Button Attack Three"]
+layout_mode = 0
+offset_right = 108.0
+offset_bottom = 108.0
+text = "3"
+label_settings = SubResource("LabelSettings_202xy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button Attack Four" type="Button" parent="Camera2D/Control Combat"]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 550.0
+offset_right = 548.0
+offset_bottom = 658.0
+icon = ExtResource("8_v1doc")
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="Camera2D/Control Combat/Button Attack Four"]
+layout_mode = 0
+offset_right = 108.0
+offset_bottom = 108.0
+text = "4"
+label_settings = SubResource("LabelSettings_202xy")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("7_xrkai")]
 position = Vector2(1228, 583)

@@ -21,6 +21,9 @@ public partial class GameLevel : Node2D, ITick {
     private Button _buttonAttackThree;
 
     [Export]
+    private Button _buttonAttackFour;
+
+    [Export]
     private Control _combatUi;
 
     private GameClock _gameClock;
