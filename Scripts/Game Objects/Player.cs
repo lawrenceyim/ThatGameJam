@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using InputSystem;
 using ServiceSystem;
@@ -15,6 +16,8 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
         Four
     }
 
+    public event Action FinishedAttackAnimation;
+
     private const string AttackOne = "Attack One";
     private const string AttackTwo = "Attack Two";
     private const string AttackThree = "Attack Three";
@@ -25,11 +28,13 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
     private GameClock _gameClock;
     private float _movementSpeed = 180 / Engine.PhysicsTicksPerSecond;
     private PlayerState _state = PlayerState.Moving;
-
+    
     public override void _Ready() {
         ServiceLocator serviceLocator = GetNode<ServiceLocator>(ServiceLocator.AutoloadPath);
         _gameClock = serviceLocator.GetService<GameClock>(ServiceName.GameClock);
         _gameClock.AddActiveScene(this, GetInstanceId());
+
+        AnimationFinished += _AnimationFinishedHandler;
     }
 
     public override void _ExitTree() {
@@ -74,6 +79,11 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
                 Play(Idle);
                 break;
         }
+    }
+    
+    private void _AnimationFinishedHandler() {
+        FinishedAttackAnimation?.Invoke();
+        GD.Print($"Finished Animation: {Animation}");
     }
 
     private void _Moving() {

@@ -4,7 +4,9 @@ using ServiceSystem;
 public partial class GameLevel : Node2D, ITick {
     public enum CombatTurn {
         Player,
-        Monster
+        PlayerAnimation,
+        Monster,
+        MonsterAnimation,
     }
 
     [Export]
@@ -50,6 +52,8 @@ public partial class GameLevel : Node2D, ITick {
         _buttonAttackTwo.Pressed += () => _Attack(Player.AttackType.Two);
         _buttonAttackThree.Pressed += () => _Attack(Player.AttackType.Three);
 
+        _player.AnimationFinished += _MonsterAttack;
+
         _combatUi.Visible = false;
     }
 
@@ -80,26 +84,15 @@ public partial class GameLevel : Node2D, ITick {
         if (Input.IsActionJustPressed(InputConst.AttackOne)) {
             GD.Print("Attack one pressed");
             _Attack(Player.AttackType.One);
-            return;
-        }
-
-        if (Input.IsActionJustPressed(InputConst.AttackTwo)) {
+        } else if (Input.IsActionJustPressed(InputConst.AttackTwo)) {
             GD.Print("Attack two pressed");
             _Attack(Player.AttackType.Two);
-            return;
-        }
-
-
-        if (Input.IsActionJustPressed(InputConst.AttackThree)) {
+        } else if (Input.IsActionJustPressed(InputConst.AttackThree)) {
             GD.Print("Attack three pressed");
             _Attack(Player.AttackType.Three);
-            return;
-        }
-
-        if (Input.IsActionJustPressed(InputConst.AttackFour)) {
+        } else if (Input.IsActionJustPressed(InputConst.AttackFour)) {
             GD.Print("Attack four pressed");
             _Attack(Player.AttackType.Four);
-            return;
         }
     }
 
@@ -109,5 +102,12 @@ public partial class GameLevel : Node2D, ITick {
         }
 
         _player.Attack(attackType);
+        _combatTurn = CombatTurn.PlayerAnimation;
+    }
+
+    private void _MonsterAttack() {
+        _combatTurn = CombatTurn.Monster;
+        _combatTurn = CombatTurn.MonsterAnimation;
+        _combatTurn = CombatTurn.Player;
     }
 }
