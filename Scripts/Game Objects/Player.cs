@@ -18,6 +18,7 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
     private const string AttackOne = "Attack One";
     private const string AttackTwo = "Attack Two";
     private const string AttackThree = "Attack Three";
+    private const string AttackFour = "Attack Four";
     private const string Move = "Move";
     private const string Idle = "Idle";
 
