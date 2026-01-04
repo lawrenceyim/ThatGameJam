@@ -34,14 +34,14 @@ public class TickTimer : ITick {
         }
 
         _ticksLeft--;
-        GD.Print($"Ticks left {_ticksLeft}");
+        // GD.Print($"Ticks left {_ticksLeft}");
         if (_ticksLeft == 0) {
             if (!_loop) {
                 _stopped = true;
                 TimedOut?.Invoke();
                 return;
             }
-            
+
             TimedOut?.Invoke();
             _ticksLeft = _random.Next(_minTicksInclusive, _maxTicksExclusive);
         }

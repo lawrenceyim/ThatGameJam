@@ -16,7 +16,14 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
         Four
     }
 
-    public event Action FinishedAttackAnimation;
+    public enum PlayerAnimation {
+        Idle,
+        Death,
+        Attack,
+        SpecialAttack,
+    }
+
+    public event Action<PlayerAnimation> FinishedPlayerAnimation;
 
     private const string AttackOne = "Attack One";
     private const string AttackTwo = "Attack Two";
@@ -24,10 +31,12 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
     private const string AttackFour = "Attack Four";
     private const string Move = "Move";
     private const string Idle = "Idle";
+    private const string Death = "Death";
 
     private GameClock _gameClock;
     private float _movementSpeed = 180 / Engine.PhysicsTicksPerSecond;
     private PlayerState _state = PlayerState.Moving;
+    private PlayerAnimation _currentAnimation = PlayerAnimation.Idle;
     
     public override void _Ready() {
         ServiceLocator serviceLocator = GetNode<ServiceLocator>(ServiceLocator.AutoloadPath);
@@ -54,8 +63,21 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
         }
     }
 
+    public void PlayAnimation(PlayerAnimation animation) {
+        _currentAnimation = animation;
+        switch (animation) {
+            case PlayerAnimation.Idle:
+                Play(Idle);
+                break;
+            case PlayerAnimation.Death:
+                Play(Death);
+                break;
+        }
+    }
+
     public void Attack(AttackType type) {
         GD.Print($"Attack type {type}");
+        _currentAnimation = PlayerAnimation.Attack;
         switch (type) {
             case AttackType.One:
                 Play(AttackOne);
@@ -67,6 +89,8 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
                 Play(AttackThree);
                 break;
             case AttackType.Four:
+                _currentAnimation = PlayerAnimation.SpecialAttack;
+                Play(AttackFour);
                 break;
         }
     }
@@ -82,7 +106,7 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
     }
     
     private void _AnimationFinishedHandler() {
-        FinishedAttackAnimation?.Invoke();
+        FinishedPlayerAnimation?.Invoke(_currentAnimation);
         GD.Print($"Finished Animation: {Animation}");
     }
 

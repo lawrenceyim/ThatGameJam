@@ -1,5 +1,6 @@
-[gd_scene load_steps=35 format=3 uid="uid://ckdl0t4dbwmln"]
+[gd_scene load_steps=42 format=3 uid="uid://ckdl0t4dbwmln"]
 
+[ext_resource type="Texture2D" uid="uid://c3v13tcpeyagp" path="res://Assets/Sprites/maincharacter_singing.png" id="1_fk5o5"]
 [ext_resource type="Texture2D" uid="uid://b7ij0bqc5se6b" path="res://Assets/Sprites/maincharacter_idle.png" id="1_ft8w5"]
 [ext_resource type="Texture2D" uid="uid://bbqiyvwy65xhq" path="res://Assets/Sprites/maincharacter_attack1.png" id="1_ude3g"]
 [ext_resource type="Texture2D" uid="uid://cgo8q0m7cs4ga" path="res://Assets/Sprites/maincharacter_attack3.png" id="2_4wape"]
@@ -7,6 +8,30 @@
 [ext_resource type="Texture2D" uid="uid://r8t5w0exhb01" path="res://Assets/Sprites/maincharacter_walk.png" id="2_h54ih"]
 [ext_resource type="Texture2D" uid="uid://cfsjg4pkeqwfo" path="res://Assets/Sprites/maincharacter_attack2.png" id="2_jmcll"]
 [ext_resource type="Texture2D" uid="uid://sm1h4yo31y3x" path="res://Assets/Sprites/maincharacter_death.png" id="4_t26db"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xdrn"]
+atlas = ExtResource("1_fk5o5")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wid83"]
+atlas = ExtResource("1_fk5o5")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7gci"]
+atlas = ExtResource("1_fk5o5")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6t50"]
+atlas = ExtResource("1_fk5o5")
+region = Rect2(0, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rswy"]
+atlas = ExtResource("1_fk5o5")
+region = Rect2(32, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbjyn"]
+atlas = ExtResource("1_fk5o5")
+region = Rect2(64, 64, 32, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_825xp"]
 atlas = ExtResource("1_ude3g")
@@ -110,6 +135,29 @@ region = Rect2(32, 64, 32, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h54ih"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xdrn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wid83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7gci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6t50")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rswy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbjyn")
+}],
+"loop": false,
+"name": &"Attack Four",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_825xp")
@@ -224,7 +272,7 @@ size = Vector2(26, 51)
 
 [node name="De" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_h54ih")
-animation = &"Idle"
+animation = &"Attack Four"
 script = ExtResource("2_ft8w5")
 
 [node name="Area2D" type="Area2D" parent="."]

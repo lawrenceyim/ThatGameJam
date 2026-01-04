@@ -31,13 +31,21 @@ public partial class GameLevel : Node2D, ITick {
     private Button _buttonAttackFour;
 
     [Export]
+    private Label _buttonFourLabel;
+
+    [Export]
     private Control _combatUi;
+
+    [Export]
+    private Monster _monster;
 
     private GameClock _gameClock;
     private SceneManager _sceneManager;
     private int _ticksPerStage = 20 * Engine.PhysicsTicksPerSecond;
     private CombatTurn _combatTurn = CombatTurn.Player;
     private bool _inCombat = false;
+    private int _playerHealth = 3;
+    private int _monsterHealth = 3;
 
     public override void _Ready() {
         ServiceLocator serviceLocator = GetNode<ServiceLocator>(ServiceLocator.AutoloadPath);
@@ -51,10 +59,13 @@ public partial class GameLevel : Node2D, ITick {
         _buttonAttackOne.Pressed += () => _Attack(Player.AttackType.One);
         _buttonAttackTwo.Pressed += () => _Attack(Player.AttackType.Two);
         _buttonAttackThree.Pressed += () => _Attack(Player.AttackType.Three);
+        _buttonAttackFour.Pressed += () => _Attack(Player.AttackType.Four);
 
-        _player.AnimationFinished += _MonsterAttack;
+        _player.FinishedPlayerAnimation += _HandlePlayerAnimationFinished;
+        _monster.FinishedMonsterAnimation += HandleMonsterMonsterAnimationFinishedMonster;
 
         _combatUi.Visible = false;
+        _buttonFourLabel.Text = GlobalSettings.SecretAttackUnlocked ? "4" : "?";
     }
 
     public override void _Process(double delta) {
@@ -101,13 +112,74 @@ public partial class GameLevel : Node2D, ITick {
             return;
         }
 
+        if (attackType == Player.AttackType.Four && !GlobalSettings.SecretAttackUnlocked) {
+            return;
+        }
+
         _player.Attack(attackType);
         _combatTurn = CombatTurn.PlayerAnimation;
     }
 
+    private void _HandlePlayerAnimationFinished(Player.PlayerAnimation animation) {
+        switch (animation) {
+            case Player.PlayerAnimation.Attack:
+                _MonsterTakeDamage();
+                _player.PlayAnimation(Player.PlayerAnimation.Idle);
+
+                if (_monsterHealth == 0) {
+                    return;
+                }
+
+                _MonsterAttack();
+                break;
+            case Player.PlayerAnimation.Death:
+                _PlayerDie();
+                break;
+            case Player.PlayerAnimation.SpecialAttack:
+                _monster.PlayAnimation(Monster.MonsterAnimation.TransformToHuman);
+                break;
+        }
+    }
+
     private void _MonsterAttack() {
         _combatTurn = CombatTurn.Monster;
+        _monster.PlayAnimation(Monster.MonsterAnimation.Attack);
         _combatTurn = CombatTurn.MonsterAnimation;
-        _combatTurn = CombatTurn.Player;
+    }
+
+    private void HandleMonsterMonsterAnimationFinishedMonster(Monster.MonsterAnimation monsterAnimation) {
+        switch (monsterAnimation) {
+            case Monster.MonsterAnimation.Attack:
+                _PlayerTakeDamage();
+                _combatTurn = CombatTurn.Player;
+                break;
+            case Monster.MonsterAnimation.Death:
+                _MonsterDie();
+                break;
+        }
+    }
+
+    private void _PlayerTakeDamage() {
+        _playerHealth--;
+
+        if (_playerHealth == 0) {
+            _player.PlayAnimation(Player.PlayerAnimation.Death);
+        }
+    }
+
+    private void _MonsterTakeDamage() {
+        _monsterHealth--;
+        if (_monsterHealth == 0) {
+            _monster.PlayAnimation(Monster.MonsterAnimation.Death);
+        }
+    }
+
+    private void _PlayerDie() {
+        _sceneManager.ChangeToCurrentScene();
+    }
+
+    private void _MonsterDie() {
+        GlobalSettings.SecretAttackUnlocked = true;
+        _sceneManager.ChangeToCurrentScene();
     }
 }
