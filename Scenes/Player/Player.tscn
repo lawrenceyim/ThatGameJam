@@ -156,7 +156,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Attack Four",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -176,7 +176,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Attack One",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -196,7 +196,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Attack Three",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -272,7 +272,7 @@ size = Vector2(26, 51)
 
 [node name="De" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_h54ih")
-animation = &"Attack Four"
+animation = &"Attack Two"
 script = ExtResource("2_ft8w5")
 
 [node name="Area2D" type="Area2D" parent="."]
