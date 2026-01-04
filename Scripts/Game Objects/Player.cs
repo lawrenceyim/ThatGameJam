@@ -16,6 +16,10 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
         Four
     }
 
+    public enum PlayerAnimation {
+        Idle,
+    }
+
     public event Action FinishedAttackAnimation;
 
     private const string AttackOne = "Attack One";
@@ -50,6 +54,14 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
                 break;
             case PlayerState.Combat:
                 _Combat();
+                break;
+        }
+    }
+
+    public void PlayAnimation(PlayerAnimation animation) {
+        switch (animation) {
+            case PlayerAnimation.Idle:
+                Play(Idle);
                 break;
         }
     }

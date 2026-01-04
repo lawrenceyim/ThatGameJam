@@ -17,7 +17,7 @@ font_color = Color(0, 0, 0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrkai"]
 size = Vector2(96.75, 597)
 
-[node name="Level One" type="Node2D" node_paths=PackedStringArray("_triggerCombatArea", "_player", "_buttonAttackOne", "_buttonAttackTwo", "_buttonAttackThree", "_buttonAttackFour", "_buttonFourLabel", "_combatUi")]
+[node name="Level One" type="Node2D" node_paths=PackedStringArray("_triggerCombatArea", "_player", "_buttonAttackOne", "_buttonAttackTwo", "_buttonAttackThree", "_buttonAttackFour", "_buttonFourLabel", "_combatUi", "_monster")]
 script = ExtResource("1_1bf4a")
 _triggerCombatArea = NodePath("Combat Initiation Area2D")
 _player = NodePath("Player")
@@ -27,6 +27,7 @@ _buttonAttackThree = NodePath("Camera2D/Control Combat/Button Attack Three")
 _buttonAttackFour = NodePath("Camera2D/Control Combat/Button Attack Four")
 _buttonFourLabel = NodePath("Camera2D/Control Combat/Button Attack Four/Label")
 _combatUi = NodePath("Camera2D/Control Combat")
+_monster = NodePath("Monster")
 
 [node name="Parallax Scenes" type="Node2D" parent="."]
 
@@ -161,7 +162,7 @@ label_settings = SubResource("LabelSettings_202xy")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimatedSprite2D" parent="." instance=ExtResource("7_xrkai")]
+[node name="Monster" parent="." instance=ExtResource("7_xrkai")]
 position = Vector2(1228, 583)
 
 [node name="Combat Initiation Area2D" type="Area2D" parent="."]

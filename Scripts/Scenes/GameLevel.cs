@@ -32,9 +32,12 @@ public partial class GameLevel : Node2D, ITick {
 
     [Export]
     private Label _buttonFourLabel;
-    
+
     [Export]
     private Control _combatUi;
+
+    [Export]
+    private Monster _monster;
 
     private GameClock _gameClock;
     private SceneManager _sceneManager;
@@ -56,10 +59,10 @@ public partial class GameLevel : Node2D, ITick {
         _buttonAttackThree.Pressed += () => _Attack(Player.AttackType.Three);
         _buttonAttackFour.Pressed += () => _Attack(Player.AttackType.Four);
 
-        _player.AnimationFinished += _MonsterAttack;
+        _player.AnimationFinished += _HandlePlayerAnimationFinished;
+        _monster.FinishedAnimation += _HandleMonsterAnimationFinished;
 
         _combatUi.Visible = false;
-
         _buttonFourLabel.Text = GlobalSettings.SecretAttackUnlocked ? "4" : "?";
     }
 
@@ -115,9 +118,23 @@ public partial class GameLevel : Node2D, ITick {
         _combatTurn = CombatTurn.PlayerAnimation;
     }
 
+    private void _HandlePlayerAnimationFinished() {
+        _player.PlayAnimation(Player.PlayerAnimation.Idle);
+        _MonsterAttack();
+    }
+    
     private void _MonsterAttack() {
         _combatTurn = CombatTurn.Monster;
+        _monster.PlayAnimation(Monster.MonsterAnimation.Attack);
         _combatTurn = CombatTurn.MonsterAnimation;
-        _combatTurn = CombatTurn.Player;
+    }
+
+    private void _HandleMonsterAnimationFinished(Monster.MonsterAnimation monsterAnimation) {
+        switch (monsterAnimation) {
+            case Monster.MonsterAnimation.Attack:
+                // Damage player
+                _combatTurn = CombatTurn.Player;
+                break;
+        }
     }
 }
