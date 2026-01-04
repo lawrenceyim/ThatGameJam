@@ -12,5 +12,6 @@ public partial class MainMenu : Node2D {
         ServiceLocator serviceLocator = GetNode<ServiceLocator>(ServiceLocator.AutoloadPath);
         _sceneManager = serviceLocator.GetService<SceneManager>(ServiceName.SceneManager);
         _playButton.Pressed += () => _sceneManager.ChangeScene(SceneId.CutScene);
+        GlobalSettings.SecretAttackUnlocked = false;
     }
 }

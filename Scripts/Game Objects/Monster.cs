@@ -52,6 +52,7 @@ public partial class Monster : AnimatedSprite2D {
             case MonsterAnimation.Idle:
                 break;
             case MonsterAnimation.TransformToHuman:
+                FinishedMonsterAnimation?.Invoke(_currentMonsterAnimation);
                 break;
         }
     }

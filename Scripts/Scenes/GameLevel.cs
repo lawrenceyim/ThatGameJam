@@ -156,6 +156,9 @@ public partial class GameLevel : Node2D, ITick {
             case Monster.MonsterAnimation.Death:
                 _MonsterDie();
                 break;
+            case Monster.MonsterAnimation.TransformToHuman:
+                _sceneManager.ChangeScene(SceneId.MainMenu);
+                break;
         }
     }
 
