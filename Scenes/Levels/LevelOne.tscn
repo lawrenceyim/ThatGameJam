@@ -73,7 +73,7 @@ texture = ExtResource("2_tleh3")
 centered = false
 
 [node name="Player" parent="." instance=ExtResource("3_tleh3")]
-position = Vector2(114, 578)
+position = Vector2(106, 485)
 scale = Vector2(2, 2)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("_player")]
@@ -164,7 +164,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Monster" parent="." instance=ExtResource("7_xrkai")]
-position = Vector2(1228, 583)
+position = Vector2(1240, 486)
 animation = &"Idle"
 
 [node name="Combat Initiation Area2D" type="Area2D" parent="."]

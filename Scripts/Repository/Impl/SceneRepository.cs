@@ -16,4 +16,5 @@ public partial class SceneRepository : Node, IAutoload, IRepository {
 public enum SceneId {
 	MainMenu = 0,
 	LevelOne = 1001,
+	CutScene = 2001,
 }

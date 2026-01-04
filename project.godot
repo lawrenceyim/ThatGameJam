@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ThatGameJam"
-run/main_scene="uid://dt0w46nxd1qgy"
+run/main_scene="uid://ux42cjgde2qp"
 config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
 config/icon="res://Assets/Sprites/icon.svg"
 
