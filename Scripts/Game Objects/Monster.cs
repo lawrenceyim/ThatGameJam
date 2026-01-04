@@ -9,12 +9,12 @@ public partial class Monster : AnimatedSprite2D {
         TransformToHuman,
     }
     
-    public event Action<MonsterAnimation> FinishedAnimation;
+    public event Action<MonsterAnimation> FinishedMonsterAnimation;
 
     private const string Attack = "Attack";
     private const string Death = "Death";
     private const string Idle = "Idle";
-    private const string TransformToHuman = "TransformToHuman";
+    private const string TransformToHuman = "Transform To Human";
 
     private MonsterAnimation _currentMonsterAnimation = MonsterAnimation.Idle;
 
@@ -43,10 +43,11 @@ public partial class Monster : AnimatedSprite2D {
     private void _HandleAnimationFinished() {
         switch (_currentMonsterAnimation) {
             case MonsterAnimation.Attack:
-                FinishedAnimation?.Invoke(_currentMonsterAnimation);
+                FinishedMonsterAnimation?.Invoke(_currentMonsterAnimation);
                 _currentMonsterAnimation = MonsterAnimation.Idle;
                 break;
             case MonsterAnimation.Death:
+                FinishedMonsterAnimation?.Invoke(_currentMonsterAnimation);
                 break;
             case MonsterAnimation.Idle:
                 break;

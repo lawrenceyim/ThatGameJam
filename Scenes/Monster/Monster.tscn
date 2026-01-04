@@ -108,11 +108,14 @@ animations = [{
 "loop": true,
 "name": &"Idle",
 "speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Transform To Human",
+"speed": 5.0
 }]
 
 [node name="Monster" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_5kmi8")
-animation = &"Attack"
-frame = 5
-frame_progress = 1.0
+animation = &"Transform To Human"
 script = ExtResource("4_wem1j")

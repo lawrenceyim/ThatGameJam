@@ -62,7 +62,7 @@ public partial class GameLevel : Node2D, ITick {
         _buttonAttackFour.Pressed += () => _Attack(Player.AttackType.Four);
 
         _player.FinishedPlayerAnimation += _HandlePlayerAnimationFinished;
-        _monster.FinishedAnimation += _HandleMonsterAnimationFinished;
+        _monster.FinishedMonsterAnimation += HandleMonsterMonsterAnimationFinishedMonster;
 
         _combatUi.Visible = false;
         _buttonFourLabel.Text = GlobalSettings.SecretAttackUnlocked ? "4" : "?";
@@ -125,10 +125,18 @@ public partial class GameLevel : Node2D, ITick {
             case Player.PlayerAnimation.Attack:
                 _MonsterTakeDamage();
                 _player.PlayAnimation(Player.PlayerAnimation.Idle);
+
+                if (_monsterHealth == 0) {
+                    return;
+                }
+
                 _MonsterAttack();
                 break;
             case Player.PlayerAnimation.Death:
                 _PlayerDie();
+                break;
+            case Player.PlayerAnimation.SpecialAttack:
+                _monster.PlayAnimation(Monster.MonsterAnimation.TransformToHuman);
                 break;
         }
     }
@@ -139,11 +147,14 @@ public partial class GameLevel : Node2D, ITick {
         _combatTurn = CombatTurn.MonsterAnimation;
     }
 
-    private void _HandleMonsterAnimationFinished(Monster.MonsterAnimation monsterAnimation) {
+    private void HandleMonsterMonsterAnimationFinishedMonster(Monster.MonsterAnimation monsterAnimation) {
         switch (monsterAnimation) {
             case Monster.MonsterAnimation.Attack:
                 _PlayerTakeDamage();
                 _combatTurn = CombatTurn.Player;
+                break;
+            case Monster.MonsterAnimation.Death:
+                _MonsterDie();
                 break;
         }
     }
@@ -159,11 +170,16 @@ public partial class GameLevel : Node2D, ITick {
     private void _MonsterTakeDamage() {
         _monsterHealth--;
         if (_monsterHealth == 0) {
-            // _Win();
+            _monster.PlayAnimation(Monster.MonsterAnimation.Death);
         }
     }
 
     private void _PlayerDie() {
+        _sceneManager.ChangeToCurrentScene();
+    }
+
+    private void _MonsterDie() {
+        GlobalSettings.SecretAttackUnlocked = true;
         _sceneManager.ChangeToCurrentScene();
     }
 }

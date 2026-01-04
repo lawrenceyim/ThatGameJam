@@ -20,6 +20,7 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
         Idle,
         Death,
         Attack,
+        SpecialAttack,
     }
 
     public event Action<PlayerAnimation> FinishedPlayerAnimation;
@@ -88,6 +89,8 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
                 Play(AttackThree);
                 break;
             case AttackType.Four:
+                _currentAnimation = PlayerAnimation.SpecialAttack;
+                Play(AttackFour);
                 break;
         }
     }
