@@ -61,7 +61,7 @@ public partial class GameLevel : Node2D, ITick {
         _buttonAttackThree.Pressed += () => _Attack(Player.AttackType.Three);
         _buttonAttackFour.Pressed += () => _Attack(Player.AttackType.Four);
 
-        _player.AnimationFinished += _HandlePlayerAnimationFinished;
+        _player.FinishedPlayerAnimation += _HandlePlayerAnimationFinished;
         _monster.FinishedAnimation += _HandleMonsterAnimationFinished;
 
         _combatUi.Visible = false;
@@ -120,10 +120,17 @@ public partial class GameLevel : Node2D, ITick {
         _combatTurn = CombatTurn.PlayerAnimation;
     }
 
-    private void _HandlePlayerAnimationFinished() {
-        _MonsterTakeDamage();
-        _player.PlayAnimation(Player.PlayerAnimation.Idle);
-        _MonsterAttack();
+    private void _HandlePlayerAnimationFinished(Player.PlayerAnimation animation) {
+        switch (animation) {
+            case Player.PlayerAnimation.Attack:
+                _MonsterTakeDamage();
+                _player.PlayAnimation(Player.PlayerAnimation.Idle);
+                _MonsterAttack();
+                break;
+            case Player.PlayerAnimation.Death:
+                _PlayerDie();
+                break;
+        }
     }
 
     private void _MonsterAttack() {
@@ -145,7 +152,7 @@ public partial class GameLevel : Node2D, ITick {
         _playerHealth--;
 
         if (_playerHealth == 0) {
-            _PlayerDie();
+            _player.PlayAnimation(Player.PlayerAnimation.Death);
         }
     }
 
