@@ -44,6 +44,8 @@ public partial class GameLevel : Node2D, ITick {
     private int _ticksPerStage = 20 * Engine.PhysicsTicksPerSecond;
     private CombatTurn _combatTurn = CombatTurn.Player;
     private bool _inCombat = false;
+    private int _playerHealth = 3;
+    private int _monsterHealth = 3;
 
     public override void _Ready() {
         ServiceLocator serviceLocator = GetNode<ServiceLocator>(ServiceLocator.AutoloadPath);
@@ -119,10 +121,11 @@ public partial class GameLevel : Node2D, ITick {
     }
 
     private void _HandlePlayerAnimationFinished() {
+        _MonsterTakeDamage();
         _player.PlayAnimation(Player.PlayerAnimation.Idle);
         _MonsterAttack();
     }
-    
+
     private void _MonsterAttack() {
         _combatTurn = CombatTurn.Monster;
         _monster.PlayAnimation(Monster.MonsterAnimation.Attack);
@@ -132,9 +135,28 @@ public partial class GameLevel : Node2D, ITick {
     private void _HandleMonsterAnimationFinished(Monster.MonsterAnimation monsterAnimation) {
         switch (monsterAnimation) {
             case Monster.MonsterAnimation.Attack:
-                // Damage player
+                _PlayerTakeDamage();
                 _combatTurn = CombatTurn.Player;
                 break;
         }
+    }
+
+    private void _PlayerTakeDamage() {
+        _playerHealth--;
+
+        if (_playerHealth == 0) {
+            _PlayerDie();
+        }
+    }
+
+    private void _MonsterTakeDamage() {
+        _monsterHealth--;
+        if (_monsterHealth == 0) {
+            // _Win();
+        }
+    }
+
+    private void _PlayerDie() {
+        _sceneManager.ChangeToCurrentScene();
     }
 }

@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://cqix1mfrj2odo"]
 
-[ext_resource type="Script" uid="uid://2ndkouxlodec" path="res://Scripts/Scenes/GameLevel.cs" id="1_1bf4a"]
+[ext_resource type="Script" uid="uid://dm8nensm68xhb" path="res://Scripts/Scenes/GameLevel.cs" id="1_1bf4a"]
 [ext_resource type="Texture2D" uid="uid://b2d3k2f7rj211" path="res://Assets/Sprites/background.png" id="1_8wook"]
 [ext_resource type="Texture2D" uid="uid://bdtchovlc5rnx" path="res://Assets/Sprites/bottom_layer_parallax.png" id="2_m7drd"]
 [ext_resource type="Texture2D" uid="uid://dayd0ke8kdyba" path="res://Assets/Sprites/top_layer_parallax.png" id="2_tleh3"]
@@ -19,6 +19,7 @@ size = Vector2(96.75, 597)
 
 [node name="Level One" type="Node2D" node_paths=PackedStringArray("_triggerCombatArea", "_player", "_buttonAttackOne", "_buttonAttackTwo", "_buttonAttackThree", "_buttonAttackFour", "_buttonFourLabel", "_combatUi", "_monster")]
 script = ExtResource("1_1bf4a")
+_sceneId = 1001
 _triggerCombatArea = NodePath("Combat Initiation Area2D")
 _player = NodePath("Player")
 _buttonAttackOne = NodePath("Camera2D/Control Combat/Button Attack One")
