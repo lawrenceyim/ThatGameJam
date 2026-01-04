@@ -31,6 +31,9 @@ public partial class GameLevel : Node2D, ITick {
     private Button _buttonAttackFour;
 
     [Export]
+    private Label _buttonFourLabel;
+    
+    [Export]
     private Control _combatUi;
 
     private GameClock _gameClock;
@@ -51,10 +54,13 @@ public partial class GameLevel : Node2D, ITick {
         _buttonAttackOne.Pressed += () => _Attack(Player.AttackType.One);
         _buttonAttackTwo.Pressed += () => _Attack(Player.AttackType.Two);
         _buttonAttackThree.Pressed += () => _Attack(Player.AttackType.Three);
+        _buttonAttackFour.Pressed += () => _Attack(Player.AttackType.Four);
 
         _player.AnimationFinished += _MonsterAttack;
 
         _combatUi.Visible = false;
+
+        _buttonFourLabel.Text = GlobalSettings.SecretAttackUnlocked ? "4" : "?";
     }
 
     public override void _Process(double delta) {
@@ -98,6 +104,10 @@ public partial class GameLevel : Node2D, ITick {
 
     private void _Attack(Player.AttackType attackType) {
         if (_combatTurn != CombatTurn.Player) {
+            return;
+        }
+
+        if (attackType == Player.AttackType.Four && !GlobalSettings.SecretAttackUnlocked) {
             return;
         }
 

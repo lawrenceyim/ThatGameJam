@@ -1,7 +1,33 @@
-[gd_scene load_steps=10 format=3 uid="uid://vtyeyjuk5ici"]
+[gd_scene load_steps=18 format=3 uid="uid://vtyeyjuk5ici"]
 
 [ext_resource type="Texture2D" uid="uid://mi3ghttlnxw8" path="res://Assets/Sprites/beast_death.png" id="1_5kmi8"]
+[ext_resource type="Texture2D" uid="uid://bu7ofeee0ho86" path="res://Assets/Sprites/beast_attack.png" id="1_40lkt"]
 [ext_resource type="Texture2D" uid="uid://bdvgh7dbwlh0j" path="res://Assets/Sprites/beast_idle.png" id="1_o74e3"]
+[ext_resource type="Script" uid="uid://4ga4odginf88" path="res://Scripts/Game Objects/Monster.cs" id="4_wem1j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hr3cx"]
+atlas = ExtResource("1_40lkt")
+region = Rect2(0, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5rfd"]
+atlas = ExtResource("1_40lkt")
+region = Rect2(96, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8veg5"]
+atlas = ExtResource("1_40lkt")
+region = Rect2(192, 0, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yw4gv"]
+atlas = ExtResource("1_40lkt")
+region = Rect2(0, 128, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aq613"]
+atlas = ExtResource("1_40lkt")
+region = Rect2(96, 128, 96, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tyuq"]
+atlas = ExtResource("1_40lkt")
+region = Rect2(192, 128, 96, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_40lkt"]
 atlas = ExtResource("1_5kmi8")
@@ -29,6 +55,29 @@ region = Rect2(192, 128, 96, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5kmi8"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hr3cx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5rfd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8veg5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yw4gv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aq613")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tyuq")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_40lkt")
@@ -63,4 +112,7 @@ animations = [{
 
 [node name="Monster" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_5kmi8")
-animation = &"Idle"
+animation = &"Attack"
+frame = 5
+frame_progress = 1.0
+script = ExtResource("4_wem1j")
