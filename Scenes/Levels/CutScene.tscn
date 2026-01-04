@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://dt0w46nxd1qgy"]
+
+[ext_resource type="Script" uid="uid://cthb050t6em3r" path="res://Scripts/Scenes/Cutscene.cs" id="1_md3qs"]
+[ext_resource type="Texture2D" uid="uid://b2d3k2f7rj211" path="res://Assets/Sprites/background.png" id="1_nvhut"]
+[ext_resource type="Texture2D" uid="uid://bdtchovlc5rnx" path="res://Assets/Sprites/bottom_layer_parallax.png" id="2_8yg1c"]
+[ext_resource type="Texture2D" uid="uid://dwhbmbu6qnwli" path="res://Assets/Sprites/middle_layer_parallax.png" id="3_uestm"]
+[ext_resource type="Texture2D" uid="uid://dayd0ke8kdyba" path="res://Assets/Sprites/top_layer_parallax.png" id="4_sb2lt"]
+
+[node name="Cutscene" type="Node2D" node_paths=PackedStringArray("_camera2D")]
+script = ExtResource("1_md3qs")
+_camera2D = NodePath("Camera2D")
+
+[node name="Parallax Scenes" type="Node2D" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="Parallax Scenes"]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(1280, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax Scenes/Parallax2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_nvhut")
+centered = false
+
+[node name="Parallax2D2" type="Parallax2D" parent="Parallax Scenes"]
+scroll_scale = Vector2(0.75, 0.75)
+repeat_size = Vector2(1280, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax Scenes/Parallax2D2"]
+position = Vector2(1, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("2_8yg1c")
+centered = false
+
+[node name="Parallax2D3" type="Parallax2D" parent="Parallax Scenes"]
+repeat_size = Vector2(1280, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax Scenes/Parallax2D3"]
+scale = Vector2(2, 2)
+texture = ExtResource("3_uestm")
+centered = false
+
+[node name="Parallax2D4" type="Parallax2D" parent="Parallax Scenes"]
+scroll_scale = Vector2(1.25, 1.25)
+repeat_size = Vector2(1280, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax Scenes/Parallax2D4"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_sb2lt")
+centered = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, 360)
+
+[node name="Label" type="Label" parent="Camera2D"]
+offset_left = -640.0
+offset_right = 640.0
+offset_bottom = 720.0
+text = "Halfway to the end of the world, there lives a villainous beast.
+You shall not stand its stain on the world: you set out to slay it."
+horizontal_alignment = 1
+vertical_alignment = 1
