@@ -165,7 +165,6 @@ vertical_alignment = 1
 
 [node name="Monster" parent="." instance=ExtResource("7_xrkai")]
 position = Vector2(1240, 486)
-animation = &"Idle"
 
 [node name="Combat Initiation Area2D" type="Area2D" parent="."]
 position = Vector2(-1423, 16)

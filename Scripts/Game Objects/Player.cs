@@ -21,6 +21,7 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
         Death,
         Attack,
         SpecialAttack,
+        TurnIntoMonster
     }
 
     public event Action<PlayerAnimation> FinishedPlayerAnimation;
@@ -32,6 +33,7 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
     private const string Move = "Move";
     private const string Idle = "Idle";
     private const string Death = "Death";
+    private const string TurnIntoMonster = "Turn Into Monster";
 
     private GameClock _gameClock;
     private float _movementSpeed = 180 / Engine.PhysicsTicksPerSecond;
@@ -44,6 +46,8 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
         _gameClock.AddActiveScene(this, GetInstanceId());
 
         AnimationFinished += _AnimationFinishedHandler;
+        
+        Play(Idle);
     }
 
     public override void _ExitTree() {
@@ -71,6 +75,9 @@ public partial class Player : AnimatedSprite2D, IInputState, ITick {
                 break;
             case PlayerAnimation.Death:
                 Play(Death);
+                break;
+            case PlayerAnimation.TurnIntoMonster:
+                Play(TurnIntoMonster);
                 break;
         }
     }

@@ -138,6 +138,9 @@ public partial class GameLevel : Node2D, ITick {
             case Player.PlayerAnimation.SpecialAttack:
                 _monster.PlayAnimation(Monster.MonsterAnimation.TransformToHuman);
                 break;
+            case Player.PlayerAnimation.TurnIntoMonster:
+                _sceneManager.ChangeToCurrentScene();
+                break;
         }
     }
 
@@ -183,6 +186,6 @@ public partial class GameLevel : Node2D, ITick {
 
     private void _MonsterDie() {
         GlobalSettings.SecretAttackUnlocked = true;
-        _sceneManager.ChangeToCurrentScene();
+        _player.PlayAnimation(Player.PlayerAnimation.TurnIntoMonster);
     }
 }

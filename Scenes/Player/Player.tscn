@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://ckdl0t4dbwmln"]
+[gd_scene load_steps=49 format=3 uid="uid://ckdl0t4dbwmln"]
 
 [ext_resource type="Texture2D" uid="uid://c3v13tcpeyagp" path="res://Assets/Sprites/maincharacter_singing.png" id="1_fk5o5"]
 [ext_resource type="Texture2D" uid="uid://b7ij0bqc5se6b" path="res://Assets/Sprites/maincharacter_idle.png" id="1_ft8w5"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://r8t5w0exhb01" path="res://Assets/Sprites/maincharacter_walk.png" id="2_h54ih"]
 [ext_resource type="Texture2D" uid="uid://cfsjg4pkeqwfo" path="res://Assets/Sprites/maincharacter_attack2.png" id="2_jmcll"]
 [ext_resource type="Texture2D" uid="uid://sm1h4yo31y3x" path="res://Assets/Sprites/maincharacter_death.png" id="4_t26db"]
+[ext_resource type="Texture2D" uid="uid://c3sp22gmwxa7u" path="res://Assets/Sprites/maincharacter_transformation.png" id="8_825xp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7xdrn"]
 atlas = ExtResource("1_fk5o5")
@@ -132,6 +133,30 @@ region = Rect2(0, 64, 32, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_fk5o5"]
 atlas = ExtResource("2_h54ih")
 region = Rect2(32, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lw74r"]
+atlas = ExtResource("8_825xp")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tf3ct"]
+atlas = ExtResource("8_825xp")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_to4uw"]
+atlas = ExtResource("8_825xp")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7cr0"]
+atlas = ExtResource("8_825xp")
+region = Rect2(0, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrod0"]
+atlas = ExtResource("8_825xp")
+region = Rect2(32, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcbn2"]
+atlas = ExtResource("8_825xp")
+region = Rect2(64, 64, 32, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h54ih"]
 animations = [{
@@ -265,6 +290,29 @@ animations = [{
 "loop": true,
 "name": &"Move",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lw74r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tf3ct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to4uw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7cr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrod0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcbn2")
+}],
+"loop": false,
+"name": &"Turn Into Monster",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s0eop"]
@@ -272,7 +320,7 @@ size = Vector2(26, 51)
 
 [node name="De" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_h54ih")
-animation = &"Attack Two"
+animation = &"Idle"
 script = ExtResource("2_ft8w5")
 
 [node name="Area2D" type="Area2D" parent="."]

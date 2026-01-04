@@ -160,5 +160,5 @@ animations = [{
 
 [node name="Monster" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_5kmi8")
-animation = &"Attack"
+animation = &"Idle"
 script = ExtResource("4_wem1j")

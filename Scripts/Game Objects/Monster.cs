@@ -19,6 +19,7 @@ public partial class Monster : AnimatedSprite2D {
     private MonsterAnimation _currentMonsterAnimation = MonsterAnimation.Idle;
 
     public override void _Ready() {
+        Play(Idle);
         AnimationFinished += _HandleAnimationFinished;
     }
 
